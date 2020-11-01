@@ -74,5 +74,20 @@ namespace MoodAnalyserAppTest
                 Assert.AreEqual("Mood should not be Null", e.Message);
             }
         }
+        [TestMethod]
+        public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyseObject()
+        {
+            string message = null;
+            object expected = new MoodAnalyser(message);
+            object obj = MoodAnalyserFactory.CreateMoodAnalysis("MoodAnalyserApp.MoodAnalyser", "MoodAnalyser");
+            expected.Equals("Class not found");
+        }
+        [TestMethod]
+        public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyseObject_UsingParameterizedConstructor()
+        {
+            object expected = new MoodAnalyser("Happy");
+            object obj = MoodAnalyserFactory.CreateMoodAnalyserUsingParametricConstructor("MoodAnalyserApp.MoodAnalyser", "MoodAnalyser  ", "Happy");
+            expected.Equals(obj);
+        }
     }
 }
